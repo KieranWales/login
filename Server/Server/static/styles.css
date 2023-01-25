@@ -1,0 +1,15 @@
+﻿body
+{
+    background-color: papayawhip
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 3px;
+    text-align: center;
+}
+
+.inpBox{
+    width: 20%;
+}

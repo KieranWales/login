@@ -10,7 +10,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            Console.Write("Welcome to the Blendr server");
+            Console.WriteLine("Welcome to the Blendr server");
         }
     }
 }
