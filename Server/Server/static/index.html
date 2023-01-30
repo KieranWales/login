@@ -11,25 +11,27 @@
         <img src="blendr.png" />
     </div>
     
-    <div class="center">
+    <div class="center" id="message">
     Login to Blendr
     </div>
 
     <div class="center">
         <label for"username">Username:
-             <input class="inpBox"/>
+             <input class="inpBox" id="username"/>
         </label>
     </div>
 
     <div class="center">
         <label for"password">
             Password:
-            <input class="inpBox" type="password"/>
+            <input class="inpBox" type="password" id="password"/>
         </label>
     </div>
 
     <div class="center">
-        <input type="button" value="Login" />
+        <input type="button" value="Login" onclick="validate()"/>
     </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
