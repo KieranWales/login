@@ -7,30 +7,35 @@
     <link rel ="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="center">
-        <img src="blendr.png" />
-    </div>
+    <form class="login" method="post">
+        <div class="center">
+            <img src="blendr.png" />
+        </div>
+
+        <div class="center" id="message">
+            Login to Blendr
+        </div>
+
+        <div class="center">
+            <label for"username">
+                Username:
+                <input class="inpBox" id="username" />
+            </label>
+        </div>
+
+        <div class="center">
+            <label for"password">
+                Password:
+                <input class="inpBox" type="password" id="password" />
+            </label>
+        </div>
+
+
+        <div class="center">
+            <input type="button" value="Login" id ="login" onclick="validate()" />
+        </div>
+    </form>
     
-    <div class="center" id="message">
-    Login to Blendr
-    </div>
-
-    <div class="center">
-        <label for"username">Username:
-             <input class="inpBox" id="username"/>
-        </label>
-    </div>
-
-    <div class="center">
-        <label for"password">
-            Password:
-            <input class="inpBox" type="password" id="password"/>
-        </label>
-    </div>
-
-    <div class="center">
-        <input type="button" value="Login" onclick="validate()"/>
-    </div>
 
     <script src="scripts.js"></script>
 </body>

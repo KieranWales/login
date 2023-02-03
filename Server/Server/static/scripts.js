@@ -1,6 +1,7 @@
 const messageBox = document.getElementById("message");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
+const login = document.getElementById("login");
 
 function reset() {
 
@@ -15,6 +16,7 @@ function validate() {
     presenceCheck(password, "Please enter a password", messageBox);
     lengthCheck(username, 3, 8, "Username should be between 3 and 8 characters", messageBox)
     lengthCheck(password, 3, 8, "Password should be between 3 and 8 characters", messageBox)
+    login.Submit();
 }
 
 function lengthCheck(input, min, max, message, output) {
