@@ -1,22 +1,23 @@
 const messageBox = document.getElementById("message");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
-const login = document.getElementById("login");
+const password2 = document.getElementById("password2");
+const login = document.getElementById("loginForm");
 
 function reset() {
 
 }
 
 function createUser() {
-
+    passCheck(password, password2, "Password's must be the same to create account", messageBox);
 }
 
 function validate() {
     presenceCheck(username, "Please enter a username", messageBox);
     presenceCheck(password, "Please enter a password", messageBox);
-    lengthCheck(username, 3, 8, "Username should be between 3 and 8 characters", messageBox)
-    lengthCheck(password, 3, 8, "Password should be between 3 and 8 characters", messageBox)
-    login.Submit();
+    lengthCheck(username, 3, 8, "Username should be between 3 and 8 characters", messageBox);
+    lengthCheck(password, 3, 8, "Password should be between 3 and 8 characters", messageBox);
+    login.submit();
 }
 
 function lengthCheck(input, min, max, message, output) {
@@ -31,6 +32,16 @@ function lengthCheck(input, min, max, message, output) {
 
 function presenceCheck(input, message, output) {
     if (input.value == "") {
+        output.innerText = message;
+        throw message;
+    }
+    else {
+        output.innerText = "Login to Blendr";
+    }
+}
+
+function passCheck(input1, input2, message, output) {
+    if (input1.value != input2.value) {
         output.innerText = message;
         throw message;
     }

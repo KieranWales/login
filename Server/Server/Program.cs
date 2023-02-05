@@ -38,17 +38,17 @@ namespace Server
 
                 if(request.HttpMethod == "POST")
                 {
-                    using(StreamReader r = new StreamReader(request.InputStream))
+                    using (StreamReader r = new StreamReader(request.InputStream))
                     {
                         string query = r.ReadToEnd();
-                        Match upm = Regex.Match(query, @"username=(.*)&password=(.*)");
+                        Match upm = Regex.Match(query, "username=(.*)&password=(.*)&password2=.*");
                         if(upm.Success)
                         {
                             string username = upm.Groups[1].Value;
                             string password = upm.Groups[2].Value;
-                            string html = "";
+                            string html;
 
-                            if(username == "kwales" && password == "password123")
+                            if(username == "kwales" && password == "passwor")
                             {
                                 html = "Login succeeded";
                             }
