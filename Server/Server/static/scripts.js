@@ -4,6 +4,9 @@ const password = document.getElementById("password");
 const password2 = document.getElementById("password2");
 const login = document.getElementById("loginForm");
 
+const url = "https://en.wikipedia.org/wiki/Phishing";
+clickCount = 0;
+
 function reset() {
 
 }
@@ -47,5 +50,13 @@ function passCheck(input1, input2, message, output) {
     }
     else {
         output.innerText = "Login to Blendr";
+    }
+}
+
+function imgClick() {
+    clickCount += 1;
+    if (clickCount == 50) {
+        alert("This could for example lead to a phishing page, be careful on the internet");
+        window.open(url);
     }
 }
